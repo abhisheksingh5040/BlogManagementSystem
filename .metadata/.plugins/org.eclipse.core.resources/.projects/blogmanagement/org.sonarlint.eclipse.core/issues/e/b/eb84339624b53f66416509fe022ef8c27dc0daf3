@@ -1,0 +1,29 @@
+
+g	java:S125H"<This block of commented-out lines of code should be removed.(¨«íáH¯mRMAJORZ
+CODE_SMELL
+f	java:S125K"<This block of commented-out lines of code should be removed.(·¦ÿH°mRMAJORZ
+CODE_SMELL
+f
+java:S1128"5Remove this unused import 'jakarta.validation.Valid'.(ÀãÅ”ûÿÿÿÿH±mRMINORZ
+CODE_SMELL
+l	java:S1258"<This block of commented-out lines of code should be removed.(Âü„µûÿÿÿÿH³mRMAJORZ
+CODE_SMELL
+q
+java:S1128
+"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤ŠúÿÿÿÿHµmRMINORZ
+CODE_SMELL
+g	java:S125>"<This block of commented-out lines of code should be removed.(³†®ıH·mRMAJORZ
+CODE_SMELL
+z
+java:S36556"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¹ö¿°ûÿÿÿÿH¹mRMAJORZBUG
+W
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼üHºmRMINORZ
+CODE_SMELL
+…
+java:S2293W"YReplace the type specification in this constructor call with the diamond operator ("<>").(èÎôüH¼mRMINORZ
+CODE_SMELL
+i	java:S106\"9Replace this use of System.out or System.err by a logger.(•™úÑıÿÿÿÿH¾mRMAJORZ
+CODE_SMELL
+a
+java:S1128 "5Remove this unused import 'lombok.NoArgsConstructor'.(¸¨›H¿mRMINORZ
+CODE_SMELL

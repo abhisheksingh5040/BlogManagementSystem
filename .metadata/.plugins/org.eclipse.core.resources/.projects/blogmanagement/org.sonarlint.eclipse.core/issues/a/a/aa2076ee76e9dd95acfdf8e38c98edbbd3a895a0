@@ -1,0 +1,10 @@
+
+U
+java:S1128",Remove this unused import 'lombok.ToString'.(¹ÂÄÓRMINORZ
+CODE_SMELL
+d
+java:S1128";Remove this unused import 'jakarta.persistence.JoinColumn'.(ÝçÆ•RMINORZ
+CODE_SMELL
+h
+java:S1128":Remove this unused import 'jakarta.persistence.FetchType'.(ŠÂ¤ŠûÿÿÿÿRMINORZ
+CODE_SMELL

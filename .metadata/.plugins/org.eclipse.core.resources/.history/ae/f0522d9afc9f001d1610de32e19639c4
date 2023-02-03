@@ -1,0 +1,5 @@
+package com.te.blogmanagement.service;
+
+public interface BlogUsersService {
+
+}

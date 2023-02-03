@@ -1,0 +1,11 @@
+package com.te.blogmanagement.service;
+
+import com.te.blogmanagement.dto.BlogPostCommentDto;
+import com.te.blogmanagement.entity.BlogPostComment;
+
+public interface BlogPostCommentService {
+
+	BlogPostComment addCommentToPost(BlogPostCommentDto blogPostCommentDto, Integer postId);
+	
+	
+}

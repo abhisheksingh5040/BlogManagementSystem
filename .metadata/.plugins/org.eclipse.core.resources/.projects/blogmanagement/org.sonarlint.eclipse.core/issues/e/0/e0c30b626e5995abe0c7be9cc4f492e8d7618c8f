@@ -1,0 +1,17 @@
+
+q
+java:S1128"FRemove this unused import 'com.te.blogmanagement.entity.BlogCategory'.(šÈÍH¥mRMINORZ
+CODE_SMELL
+ƒ
+java:S1128"RRemove this unused import 'com.te.blogmanagement.exception.PostNotFoundException'.(ÜİåìÿÿÿÿÿH§mRMINORZ
+CODE_SMELL
+…
+java:S2293="YReplace the type specification in this constructor call with the diamond operator ("<>").( «ıH©mRMINORZ
+CODE_SMELL
+f
+java:S1128"5Remove this unused import 'jakarta.validation.Valid'.(ÀãÅ”ûÿÿÿÿH«mRMINORZ
+CODE_SMELL
+w
+java:S1128
+"FRemove this unused import 'com.te.blogmanagement.dto.BlogCategoryDto'.(“»¨ÕÿÿÿÿÿH­mRMINORZ
+CODE_SMELL

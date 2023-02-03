@@ -1,0 +1,44 @@
+package com.te.blogmanagement.serviceimpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.te.blogmanagement.dto.BlogPostViewByIdDto;
+import com.te.blogmanagement.dto.BlogPostViewDto;
+import com.te.blogmanagement.entity.BlogPost;
+import com.te.blogmanagement.exception.BlogManagementMasterException;
+import com.te.blogmanagement.exception.PostNotFoundException;
+import com.te.blogmanagement.repository.BlogPostRepository;
+import com.te.blogmanagement.service.BlogViewService;
+
+public class BlogViewServiceImpl implements BlogViewService {
+
+	@Autowired
+	private BlogPostRepository blogPostRepository;
+	
+	// To get all the posts
+		@Override
+		public List<BlogPostViewDto> getAllPosts() {
+			List<BlogPost> blogPosts = blogPostRepository.findAll();
+			List<BlogPostViewDto> blogPostViewDtos = new ArrayList<BlogPostViewDto>();
+			for (BlogPost blogPost : blogPosts) {
+				BlogPostViewDto blogPostViewDto = new BlogPostViewDto();
+				BeanUtils.copyProperties(blogPost, blogPostViewDto);
+				blogPostViewDtos.add(blogPostViewDto);
+				System.out.println(blogPostViewDto);
+			}
+			return blogPostViewDtos;
+		}
+
+		// get post by an Id
+		@Override
+		public BlogPostViewByIdDto getPostById(Integer postId) {
+			BlogPost blogPost = blogPostRepository.findById(postId).orElseThrow(()-> new PostNotFoundException(BlogManagementMasterException.POST_ID_NOT_FOUND));
+			BlogPostViewByIdDto blogPostViewById = new BlogPostViewByIdDto();
+			BeanUtils.copyProperties(blogPost, blogPostViewById);
+			return blogPostViewById;
+		}
+}

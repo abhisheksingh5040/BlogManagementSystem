@@ -1,0 +1,18 @@
+1672909507231	Rename type 'User'
+1672914156209	Rename compilation unit 'PostComment.java'
+1672999734320	Delete element
+1672999788062	Delete element
+1672999808385	Delete element
+1672999813659	Delete element
+1673066575791	Rename package 'com.te.blogmanagement.blogservice'
+1673066592747	Rename package 'com.te.blogmanagement.blogResponse'
+1673066611690	Rename package 'com.te.blogmanagement.blogentity'
+1673066645447	Rename package 'com.te.blogmanagement.blogdto'
+1673066662262	Rename package 'com.te.blogmanagement.blogController'
+1673068816030	Rename type 'AppResponse'
+1673077558004	Copy compilation unit
+1673077575538	Rename type 'BlogTag'
+1673077587295	Delete element
+1673106970471	Rename type 'BostPostResponse'
+1673106986005	Rename type 'BostPostRepository'
+1673107021097	Rename type 'BosgPostRepository'

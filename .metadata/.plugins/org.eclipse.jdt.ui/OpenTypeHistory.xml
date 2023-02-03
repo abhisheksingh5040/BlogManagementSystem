@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=blogmanagement/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.te.blogmanagement.repository{BlogCategoryRepository.java[BlogCategoryRepository" modifiers="513" timestamp="1673852558214"/>
+    <typeInfo handle="=blogmanagement/C:\/Users\/91970\/Downloads\/sts-4.17.0.RELEASE\/plugins\/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.5.v20221102-0933\/jre\/lib\/jrt-fs.jar`java.base=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/17\/docs\/api\/=/=/maven.pomderived=/true=/&lt;java.io(Serializable.class[Serializable" modifiers="1537" timestamp="1672666180269"/>
+    <typeInfo handle="=blogmanagement/C:\/Users\/91970\/.m2\/repository\/org\/apache\/logging\/log4j\/log4j-api\/2.19.0\/log4j-api-2.19.0.jar=/maven.pomderived=/true=/=/maven.groupId=/org.apache.logging.log4j=/=/maven.artifactId=/log4j-api=/=/maven.version=/2.19.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.apache.logging.log4j(Logger.class[Logger" modifiers="1537" timestamp="1672493796921"/>
+    <typeInfo handle="=blogmanagement/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.te.blogmanagement.service{BlogViewService.java[BlogViewService" modifiers="513" timestamp="1675015424967"/>
+</typeInfoHistroy>

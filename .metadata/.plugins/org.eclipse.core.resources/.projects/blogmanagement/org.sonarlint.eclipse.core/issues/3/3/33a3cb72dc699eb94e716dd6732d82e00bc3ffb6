@@ -1,0 +1,13 @@
+
+‡
+java:S2293@"YReplace the type specification in this constructor call with the diamond operator ("<>").(·‚èÿÿÿÿÿRMINORZ
+CODE_SMELL
+T
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼üRMINORZ
+CODE_SMELL
+{
+java:S1128"RRemove this unused import 'com.fasterxml.jackson.annotation.JsonManagedReference'.(Æ˜µRMINORZ
+CODE_SMELL
+U
+java:S1128",Remove this unused import 'lombok.ToString'.(¹ÂÄÓRMINORZ
+CODE_SMELL

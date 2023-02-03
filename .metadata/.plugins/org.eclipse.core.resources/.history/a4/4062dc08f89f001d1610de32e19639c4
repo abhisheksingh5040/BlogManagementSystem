@@ -1,0 +1,39 @@
+package com.te.blogmanagement.serviceimpl;
+
+import com.te.blogmanagement.dto.BlogUserDto;
+import com.te.blogmanagement.entity.BlogUser;
+import com.te.blogmanagement.service.BlogUserService;
+
+public class BlogUsersServiceImpl implements BlogUserService {
+
+	@Override
+	public BlogUserDto registerNewUser(BlogUserDto blogUserDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BlogUserDto readUserById(Integer blogUserId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BlogUser UpdateUserById(BlogUserDto blogUserDto, Integer userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteUserById(Integer userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void userLogout(Integer userId) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

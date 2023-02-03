@@ -1,0 +1,10 @@
+
+w
+java:S1128"IRemove this unused import 'com.te.blogmanagement.entity.BlogPostComment'.(Ž¬ÿ£ûÿÿÿÿRMINORZ
+CODE_SMELL
+Y
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±ÄøÿÿÿÿRMINORZ
+CODE_SMELL
+T
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼üRMINORZ
+CODE_SMELL

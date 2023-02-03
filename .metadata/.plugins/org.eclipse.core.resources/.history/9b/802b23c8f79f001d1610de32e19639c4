@@ -1,0 +1,7 @@
+package com.te.blogmanagement.serviceimpl;
+
+import com.te.blogmanagement.service.BlogAdminService;
+
+public class BlogAdminServiceImpl implements BlogAdminService{
+
+}

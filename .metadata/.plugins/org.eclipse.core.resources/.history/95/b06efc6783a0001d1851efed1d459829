@@ -1,0 +1,50 @@
+package com.te.blogmanagement.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.te.blogmanagement.dto.BlogPostMetaDto;
+import com.te.blogmanagement.response.PostMetaResponse;
+import com.te.blogmanagement.response.PostResponse;
+import com.te.blogmanagement.response.UserResponse;
+import com.te.blogmanagement.service.BlogUsersService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+public class BlogUsersController {
+
+	@Autowired
+	private BlogUsersService blogUsersService;
+
+	@Autowired
+	private UserResponse userResponse;
+
+	@Autowired
+	private PostResponse postResponse;
+
+	@Autowired
+	public PostMetaResponse postMetaResponse;
+	
+	@PostMapping("/addpostmeta/{postId}")
+	public ResponseEntity<PostMetaResponse> addPostMeta(@PathVariable Integer postId,
+			@RequestBody BlogPostMetaDto blogPostMetaDto) {
+
+		System.out.println(blogPostMetaDto);
+		BlogPostMetaDto postMetaDto = blogUsersService.addPostMeta(postId, blogPostMetaDto);
+		if (postMetaDto != null) {
+			postMetaResponse.setMessage("meta data added succesfully.");
+			postMetaResponse.setStatus(201);
+			postMetaResponse.setMetaPosts(postMetaDto);
+			return new ResponseEntity<PostMetaResponse>(postMetaResponse, HttpStatus.CREATED);
+		} else {
+			postMetaResponse.setMessage("meta data not added");
+			postMetaResponse.setStatus(402);
+			return new ResponseEntity<PostMetaResponse>(HttpStatus.BAD_REQUEST);
+		}
+	}
+}

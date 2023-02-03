@@ -1,0 +1,10 @@
+package com.te.blogmanagement.serviceimpl;
+
+import org.springframework.stereotype.Service;
+
+import com.te.blogmanagement.service.BlogAdminService;
+
+@Service
+public class BlogAdminServiceImpl implements BlogAdminService{
+
+}

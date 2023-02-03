@@ -1,0 +1,122 @@
+package com.te.blogmanagement.serviceimpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.te.blogmanagement.dto.BlogCategoryDto;
+import com.te.blogmanagement.dto.BlogCategoryViewDto;
+import com.te.blogmanagement.dto.BlogPostViewByIdDto;
+import com.te.blogmanagement.dto.BlogPostViewDto;
+import com.te.blogmanagement.dto.BlogTagDto;
+import com.te.blogmanagement.dto.BlogTagViewDto;
+import com.te.blogmanagement.entity.BlogCategory;
+import com.te.blogmanagement.entity.BlogPost;
+import com.te.blogmanagement.entity.BlogTag;
+import com.te.blogmanagement.exception.BlogManagementMasterException;
+import com.te.blogmanagement.exception.CategoryNotFoundException;
+import com.te.blogmanagement.exception.PostNotFoundException;
+import com.te.blogmanagement.exception.TagNotFoundException;
+import com.te.blogmanagement.repository.BlogCategoryRepository;
+import com.te.blogmanagement.repository.BlogPostRepository;
+import com.te.blogmanagement.repository.BlogTagRepository;
+import com.te.blogmanagement.service.BlogViewService;
+
+public class BlogViewServiceImpl implements BlogViewService {
+
+	@Autowired
+	private BlogPostRepository blogPostRepository;
+	
+	@Autowired
+	private BlogCategoryRepository blogCategoryRepository;
+	
+	@Autowired
+	private BlogTagRepository blogTagRepository;
+	
+	// To get all the posts
+	@Override
+	public List<BlogPostViewDto> getAllPosts() {
+		List<BlogPost> blogPosts = blogPostRepository.findAll();
+		List<BlogPostViewDto> blogPostViewDtos = new ArrayList<BlogPostViewDto>();
+		for (BlogPost blogPost : blogPosts) {
+			BlogPostViewDto blogPostViewDto = new BlogPostViewDto();
+			BeanUtils.copyProperties(blogPost, blogPostViewDto);
+			blogPostViewDtos.add(blogPostViewDto);
+			System.out.println(blogPostViewDto);
+		}
+		return blogPostViewDtos;
+	}
+
+		// get post by an Id
+		@Override
+		public BlogPostViewByIdDto getPostById(Integer postId) {
+			BlogPost blogPost = blogPostRepository.findById(postId).orElseThrow(()-> new PostNotFoundException(BlogManagementMasterException.POST_ID_NOT_FOUND));
+			BlogPostViewByIdDto blogPostViewById = new BlogPostViewByIdDto();
+			BeanUtils.copyProperties(blogPost, blogPostViewById);
+			return blogPostViewById;
+		}
+		
+		// get by Id
+		@Override
+		public BlogCategoryViewDto getCategoryById(Integer categoryId) {
+			BlogCategory blogCategory = blogCategoryRepository.findById(categoryId)
+					.orElseThrow(() -> new CategoryNotFoundException(BlogManagementMasterException.CATEGORY_ID_NOT_FOUND));
+
+			BlogCategoryViewDto blogCategoryViewDto = new BlogCategoryViewDto();
+			BeanUtils.copyProperties(blogCategory, blogCategoryViewDto);
+			List<BlogPostViewDto> blogPostViewDtos = new ArrayList<>();
+			for (BlogPost posts : blogCategory.getBlogPosts()) {
+				BlogPostViewDto blogPostViewDto = new BlogPostViewDto();
+				BeanUtils.copyProperties(posts, blogPostViewDto);
+				blogPostViewDtos.add(blogPostViewDto);
+			}
+			blogCategoryViewDto.setBlogPostViewDtos(blogPostViewDtos);
+			return blogCategoryViewDto;
+		}
+
+		// get All categories
+		@Override
+		public List<BlogCategoryDto> getAllCategories() {
+			List<BlogCategoryDto> blogCategoryDtos = new ArrayList<>();
+			List<BlogCategory> blogCategories = blogCategoryRepository.findAll();
+			for (BlogCategory category : blogCategories) {
+				BlogCategoryDto blogCategoryDto = new BlogCategoryDto();
+				BeanUtils.copyProperties(category, blogCategoryDto);
+				blogCategoryDtos.add(blogCategoryDto);
+			}
+			return blogCategoryDtos;
+		}
+		
+		// Get tags by id
+		@Override
+		public BlogTagViewDto getTagById(Integer tagId) {
+			BlogTag blogTag = blogTagRepository.findById(tagId)
+					.orElseThrow(() -> new TagNotFoundException(BlogManagementMasterException.TAG_ID_NOT_FOUND));
+			BlogTagViewDto blogTagViewDto = new BlogTagViewDto();
+			BeanUtils.copyProperties(blogTag, blogTagViewDto);
+			List<BlogPostViewDto> blogPostViewDtos = new ArrayList<>();
+			for (BlogPost posts : blogTag.getBlogPost()) {
+				BlogPostViewDto blogPostViewDto = new BlogPostViewDto();
+				BeanUtils.copyProperties(posts, blogPostViewDto);
+				blogPostViewDtos.add(blogPostViewDto);
+			}
+			blogTagViewDto.setBlogPostViewDtos(blogPostViewDtos);
+			return blogTagViewDto;
+		}
+
+		// get all tags
+		@Override
+		public List<BlogTagDto> getAllTags() {
+			List<BlogTagDto> blogTagDtos = new ArrayList<BlogTagDto>();
+			List<BlogTag> blogTags = blogTagRepository.findAll();
+			for (BlogTag tag : blogTags) {
+				BlogTagDto blogTagDto = new BlogTagDto();
+				BeanUtils.copyProperties(tag, blogTagDto);
+				blogTagDtos.add(blogTagDto);
+			}
+			return blogTagDtos;
+		}
+
+}

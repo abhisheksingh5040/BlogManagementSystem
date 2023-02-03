@@ -1,0 +1,18 @@
+package com.te.blogmanagement.service;
+
+import com.te.blogmanagement.dto.BlogUserDto;
+import com.te.blogmanagement.entity.BlogUser;
+
+public interface BlogUserService {
+
+	BlogUserDto registerNewUser(BlogUserDto blogUserDto);
+
+	BlogUserDto readUserById(Integer blogUserId);
+
+	BlogUser UpdateUserById(BlogUserDto blogUserDto,Integer userId);
+
+	boolean deleteUserById(Integer userId);
+
+	void userLogout(Integer userId);
+	
+}

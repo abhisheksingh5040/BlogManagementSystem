@@ -1,0 +1,13 @@
+
+d	java:S125"<This block of commented-out lines of code should be removed.(µ¿Ó‡RMAJORZ
+CODE_SMELL
+j
+java:S1128
+"ARemove this unused import 'com.te.blogmanagement.entity.BlogTag'.(¥òö¬RMINORZ
+CODE_SMELL
+p
+java:S1128"BRemove this unused import 'com.te.blogmanagement.entity.BlogUser'.(ã„³ÌıÿÿÿÿRMINORZ
+CODE_SMELL
+n
+java:S1128"FRemove this unused import 'com.te.blogmanagement.entity.BlogCategory'.(šÈÍRMINORZ
+CODE_SMELL

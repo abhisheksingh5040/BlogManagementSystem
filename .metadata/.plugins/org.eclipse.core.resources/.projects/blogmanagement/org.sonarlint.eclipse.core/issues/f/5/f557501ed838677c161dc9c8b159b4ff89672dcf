@@ -1,0 +1,6 @@
+
+z
+java:S3655H"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¹ö¿°ûÿÿÿÿH¢mRMAJORZBUG
+„
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡ž¸ÎùÿÿÿÿH£mRMINORZ
+CODE_SMELL

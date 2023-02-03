@@ -1,0 +1,9 @@
+
+Å	java:S116"YRename this field "BlogPostMetaId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãÀÀ˜RMINORZ
+CODE_SMELL
+d
+java:S1128";Remove this unused import 'jakarta.persistence.JoinColumn'.(›Á∆ïRMINORZ
+CODE_SMELL
+j
+java:S1128"<Remove this unused import 'jakarta.persistence.CascadeType'.(√√ ä˙ˇˇˇˇRMINORZ
+CODE_SMELL

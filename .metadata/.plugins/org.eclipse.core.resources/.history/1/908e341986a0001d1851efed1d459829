@@ -1,0 +1,16 @@
+package com.te.blogmanagement.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.te.blogmanagement.dto.BlogUserDto;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+public class BlogUsersController {
+
+	@RequestBody("v1")
+	public BlogUserDto home(@RequestBody BlogUserDto blogUserDto) {
+		return blogUserDto;
+	}
+}

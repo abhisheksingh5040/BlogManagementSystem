@@ -1,0 +1,10 @@
+package com.te.blogmanagement.service;
+
+import com.te.blogmanagement.dto.BlogUserDto;
+
+public interface BlogAdminService {
+
+	BlogUserDto readUserById(Integer blogUserId);
+	
+	boolean deleteUserById(Integer userId);
+}

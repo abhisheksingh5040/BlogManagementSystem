@@ -1,0 +1,25 @@
+package com.te.blogmanagement.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.te.blogmanagement.dto.BlogPostDto;
+import com.te.blogmanagement.dto.BlogPostMetaDto;
+import com.te.blogmanagement.dto.BlogTagDto;
+import com.te.blogmanagement.dto.BlogUserDto;
+import com.te.blogmanagement.entity.BlogPost;
+import com.te.blogmanagement.entity.BlogUser;
+
+public interface BlogUsersService {
+
+	BlogUserDto registerNewUser(BlogUserDto blogUserDto);
+	
+	BlogUser UpdateUserById(BlogUserDto blogUserDto,Integer userId);
+	
+	BlogPost createNewPost(BlogPostDto blogPostDto, Integer userId, List<BlogPostDto> categories,
+			List<BlogTagDto> tags);
+	
+	BlogPostMetaDto addPostMeta(Integer postId, BlogPostMetaDto blogPostMetaDto);
+}

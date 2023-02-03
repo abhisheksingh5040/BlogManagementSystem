@@ -1,0 +1,22 @@
+package com.te.blogmanagement.service;
+
+import com.te.blogmanagement.dto.BlogCategoryDto;
+import com.te.blogmanagement.dto.BlogTagDto;
+import com.te.blogmanagement.dto.BlogUserDto;
+import com.te.blogmanagement.entity.BlogCategory;
+import com.te.blogmanagement.entity.BlogTag;
+
+public interface BlogAdminService {
+
+	BlogUserDto readUserById(Integer blogUserId);
+	
+	boolean deleteUserById(Integer userId);
+	
+	BlogCategory createCategory(BlogCategoryDto blogCategoryDto);
+	
+	BlogCategory updateCategoryById(BlogCategoryDto blogCategoryDto, Integer categoryId);
+	
+	BlogTag createTags(BlogTagDto blogTagDto);
+	
+	BlogTag updatetagById(BlogTagDto blogTagDto, Integer tagId);
+}
