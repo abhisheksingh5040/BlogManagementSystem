@@ -17,9 +17,9 @@ import lombok.ToString;
 public class BlogUserDto {
 
 	//private Integer blogUserId;
-	@NotBlank(message = "First name cannot be empty")
+	@NotBlank(message = "First Name cannot be empty")
 	private String userFirstName;
-	@NotBlank(message = "Middle name cannot be empty")
+	@NotBlank(message = "Middle Name cannot be empty")
 	private String userMiddleName;
 	@NotBlank(message = "Last name cannot be empty")
 	private String userLastName;
