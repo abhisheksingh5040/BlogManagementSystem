@@ -3,6 +3,7 @@ package com.te.blogmanagement.serviceimpl;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -36,9 +37,17 @@ public class BlogUsersServiceImpl implements BlogUsersService {
 	private final BlogPostMetaRepository blogPostMetaRepository;
 	private final BlogCategoryRepository blogCategoryRepository;
 	private final BlogTagRepository blogTagRepository;
+	private final ModelMapper modelMapper;
 
 	@Override
 	public BlogUserDto registerNewUser(BlogUserDto blogUserDto) {
+
+		blogUserRepository
+		.save(modelMapper.map(blogUserDto,BlogUser.class)
+				.builder()
+				.userRegisteredAt(LocalDateTime.now())
+				.build());
+		
 		BlogUser blogUser = new BlogUser();
 		BeanUtils.copyProperties(blogUserDto, blogUser);
 		blogUser.setUserRegisteredAt(LocalDateTime.now());

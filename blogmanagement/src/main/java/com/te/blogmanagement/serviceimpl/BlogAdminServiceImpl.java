@@ -1,5 +1,6 @@
 package com.te.blogmanagement.serviceimpl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -27,33 +28,35 @@ public class BlogAdminServiceImpl implements BlogAdminService {
 	private final BlogUserRepository blogUserRepository;
 	private final BlogCategoryRepository blogCategoryRepository;
 	private final BlogTagRepository blogTagRepository;
+	private final ModelMapper modelMapper;
 
 	@Override
 	public BlogUserDto readUserById(Integer userId) {
-		BlogUser user = blogUserRepository.findById(userId)
-				.orElseThrow(() -> new UserNotFoundException(BlogManagementMasterException.USER_ID_NOT_FOUND));
-		BlogUserDto blogUserDto = new BlogUserDto();
-		BeanUtils.copyProperties(user, blogUserDto);
-		return blogUserDto;
+
+		return blogUserRepository.findById(userId).map(user -> {
+			BlogUserDto blogUserDto = new BlogUserDto();
+			BeanUtils.copyProperties(user, blogUserDto);
+			return blogUserDto;
+		}).orElseThrow(() -> new UserNotFoundException(BlogManagementMasterException.USER_ID_NOT_FOUND));
 	}
 
 	// delete
 	@Override
 	public boolean deleteUserById(Integer userId) {
-		BlogUser user = blogUserRepository.findById(userId)
-				.orElseThrow(() -> new UserNotFoundException(BlogManagementMasterException.USER_ID_NOT_FOUND));
+		
+		return blogUserRepository.findById(userId).map(user -> {
+			blogUserRepository.deleteById(userId);
+			return true;
+		}).orElseThrow(() -> new UserNotFoundException(BlogManagementMasterException.USER_ID_NOT_FOUND));
 
-		blogUserRepository.deleteById(userId);
-		return true;
 	}
 
 	// create category
 	@Override
 	public BlogCategory createCategory(BlogCategoryDto blogCategoryDto) {
-		BlogCategory blogCategory = new BlogCategory();
-		BeanUtils.copyProperties(blogCategoryDto, blogCategory);
 
-		return blogCategoryRepository.save(blogCategory);
+		return blogCategoryRepository
+				.save(modelMapper.map(blogCategoryDto,	BlogCategory.class));
 	}
 
 	// update category by Id
@@ -71,9 +74,8 @@ public class BlogAdminServiceImpl implements BlogAdminService {
 
 	@Override
 	public BlogTag createTags(BlogTagDto blogTagDto) {
-		BlogTag blogTag = new BlogTag();
-		BeanUtils.copyProperties(blogTagDto, blogTag);
-		return blogTagRepository.save(blogTag);
+		return blogTagRepository
+				.save(modelMapper.map(blogTagDto, BlogTag.class));
 	}
 
 	@Override
