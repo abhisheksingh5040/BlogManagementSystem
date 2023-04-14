@@ -1,11 +1,14 @@
 package com.te.blogmanagement.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.te.blogmanagement.dto.BlogPostDto;
+import com.te.blogmanagement.dto.BlogUserDto;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,21 +19,23 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
-@Component
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
+@Entity
 @Table(name="blog_user")
-public class BlogUser {
+public class BlogUser implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "blog_user_id")

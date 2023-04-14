@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.te.blogmanagement.dto.BlogPostDto;
@@ -26,26 +25,17 @@ import com.te.blogmanagement.repository.BlogTagRepository;
 import com.te.blogmanagement.repository.BlogUserRepository;
 import com.te.blogmanagement.service.BlogUsersService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class BlogUsersServiceImpl implements BlogUsersService {
 
-	@Autowired
-	private BlogUserRepository blogUserRepository;
-
-	@Autowired
-	private BlogPostRepository blogPostRepository;
-
-	@Autowired
-	private BlogPostMetaRepository blogPostMetaRepository;
-
-	@Autowired
-	private BlogCategoryRepository blogCategoryRepository;
-
-	@Autowired
-	private BlogTagRepository blogTagRepository;
+	private final BlogUserRepository blogUserRepository;
+	private final BlogPostRepository blogPostRepository;
+	private final BlogPostMetaRepository blogPostMetaRepository;
+	private final BlogCategoryRepository blogCategoryRepository;
+	private final BlogTagRepository blogTagRepository;
 
 	@Override
 	public BlogUserDto registerNewUser(BlogUserDto blogUserDto) {

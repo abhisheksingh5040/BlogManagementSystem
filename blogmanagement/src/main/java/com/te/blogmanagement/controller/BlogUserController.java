@@ -2,7 +2,6 @@ package com.te.blogmanagement.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,97 +16,56 @@ import com.te.blogmanagement.dto.BlogPostMetaDto;
 import com.te.blogmanagement.dto.BlogPostViewDto;
 import com.te.blogmanagement.dto.BlogUserDto;
 import com.te.blogmanagement.entity.BlogUser;
-import com.te.blogmanagement.response.PostMetaResponse;
-import com.te.blogmanagement.response.PostResponse;
-import com.te.blogmanagement.response.UserResponse;
+import com.te.blogmanagement.response.Response;
 import com.te.blogmanagement.service.BlogUsersService;
 
 import io.swagger.v3.oas.annotations.Operation;
-
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @RestController
-@NoArgsConstructor
-@AllArgsConstructor
 @RequestMapping("/v1/user")
 public class BlogUserController {
 
-	@Autowired
-	private BlogUsersService blogUsersService;
+	private final BlogUsersService blogUsersService;
 
-	@Autowired
-	private UserResponse userResponse;
-
-	@Autowired
-	private PostResponse postResponse;
-
-	@Autowired
-	public PostMetaResponse postMetaResponse;
-	
 	@Operation(summary = "registration of new user.")
 	@PostMapping("/registerUser")
-	public ResponseEntity<UserResponse> registerNewUser(@Valid @RequestBody BlogUserDto blogUserDto) {
-		blogUserDto = blogUsersService.registerNewUser(blogUserDto);
+	public ResponseEntity<Response> registerNewUser(@Valid @RequestBody BlogUserDto blogUserDto) {
 
-		if (blogUserDto != null) {
-			userResponse.setError(false);
-			userResponse.setMessage("User Added successfully...");
-			userResponse.setStatus(201);
-			userResponse.setUserDetails(blogUserDto);
-			return new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);
-		} else {
-			userResponse.setError(true);
-			userResponse.setMessage("Unable to add user.....");
-			userResponse.setStatus(402);
-			return new ResponseEntity<UserResponse>(HttpStatus.BAD_REQUEST);
-		}
+		return new ResponseEntity<Response>(Response.builder().error(false).message("User Added successfully...")
+				.data(blogUsersService.registerNewUser(blogUserDto)).build(), HttpStatus.CREATED);
+
 	}
-	
+
 	@Operation(summary = "update a user by its id")
 	@PutMapping("/updateUserById/{userId}")
-	public ResponseEntity<UserResponse> updateUserById(@Valid @RequestBody BlogUserDto blogUserDto,
+	public ResponseEntity<Response> updateUserById(@Valid @RequestBody BlogUserDto blogUserDto,
 			@PathVariable Integer userId) {
-		BlogUser blogUser = blogUsersService.UpdateUserById(blogUserDto, userId);
-		if(blogUser!=null) {
-			userResponse.setError(false);
-			userResponse.setMessage("User updated successfully...");
-			userResponse.setStatus(200);
-			userResponse.setUserDetails(blogUserDto);
-			return new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);
-		}else {
-			userResponse.setError(true);
-			userResponse.setMessage("Unable to update user.....");
-			userResponse.setStatus(402);
-			return new ResponseEntity<UserResponse>(HttpStatus.BAD_REQUEST);
-		}
+
+		return ResponseEntity.ok(
+				Response.builder().error(false).status(200).data(blogUsersService.UpdateUserById(blogUserDto, userId))
+						.message("User updated successfully...").build());
 	}
-	
+
 	@Operation(summary = "create a post by using multiple category id and multiple tag id")
 	@PostMapping("/createPosts/userId/{userId}/catgegoryId/{categoryId}/tagId/{tagId}")
-	public ResponseEntity<BlogPostViewDto> createNewPost(@RequestBody BlogPostDto blogPostDto,
-			@PathVariable Integer userId, @PathVariable List<Integer> categoryId, @PathVariable List<Integer> tagId) {
-		BlogPostViewDto blogPostViewDto = blogUsersService.createNewPosts(userId, blogPostDto, tagId, categoryId);
-		return new ResponseEntity<BlogPostViewDto>(blogPostViewDto, HttpStatus.OK);
+	public ResponseEntity<Response> createNewPost(@RequestBody BlogPostDto blogPostDto, @PathVariable Integer userId,
+			@PathVariable List<Integer> categoryId, @PathVariable List<Integer> tagId) {
+
+		return new ResponseEntity<Response>(
+				Response.builder().error(false).message("post added successfully...")
+						.data(blogUsersService.createNewPosts(userId, blogPostDto, tagId, categoryId)).build(),
+				HttpStatus.CREATED);
 	}
-	
+
 	@PostMapping("/addpostmeta/{postId}")
-	public ResponseEntity<PostMetaResponse> addPostMeta(@PathVariable Integer postId,
+	public ResponseEntity<Response> addPostMeta(@PathVariable Integer postId,
 			@RequestBody BlogPostMetaDto blogPostMetaDto) {
 
-		System.out.println(blogPostMetaDto);
-		BlogPostMetaDto postMetaDto = blogUsersService.addPostMeta(postId, blogPostMetaDto);
-		if (postMetaDto != null) {
-			postMetaResponse.setMessage("meta data added succesfully.");
-			postMetaResponse.setStatus(201);
-			postMetaResponse.setMetaPosts(postMetaDto);
-			System.out.println(postMetaResponse);
-			return new ResponseEntity<PostMetaResponse>(postMetaResponse,HttpStatus.CREATED);
-		} else {
-			postMetaResponse.setMessage("meta data not added");
-			postMetaResponse.setStatus(402);
-			return new ResponseEntity<PostMetaResponse>(HttpStatus.BAD_REQUEST);
-		}
+		return new ResponseEntity<Response>(Response.builder().error(false).message("meta data added succesfully.....")
+				.data(blogUsersService.addPostMeta(postId, blogPostMetaDto)).build(), HttpStatus.CREATED);
+
 	}
 }

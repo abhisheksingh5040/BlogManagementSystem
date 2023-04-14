@@ -1,5 +1,6 @@
 package com.te.blogmanagement.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -15,18 +16,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Component
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class BlogTag {
+@Builder
+@Entity
+@Table(name="blog_tag")
+public class BlogTag implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="tag_id")

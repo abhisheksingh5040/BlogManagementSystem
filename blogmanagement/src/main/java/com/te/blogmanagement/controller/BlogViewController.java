@@ -2,16 +2,13 @@ package com.te.blogmanagement.controller;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.te.blogmanagement.dto.BlogCategoryDto;
 import com.te.blogmanagement.dto.BlogCategoryViewDto;
@@ -21,83 +18,58 @@ import com.te.blogmanagement.dto.BlogPostViewDto;
 import com.te.blogmanagement.dto.BlogTagDto;
 import com.te.blogmanagement.dto.BlogTagViewDto;
 import com.te.blogmanagement.entity.BlogPostComment;
-import com.te.blogmanagement.response.CategoryResponse;
-import com.te.blogmanagement.response.PostResponse;
-import com.te.blogmanagement.response.TagResponse;
 import com.te.blogmanagement.service.BlogViewService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
-@Controller
+@RequiredArgsConstructor
+@RestController
 @RequestMapping("/v1/view")
 public class BlogViewController {
-	@Autowired
-	private BlogViewService blogViewService;
 	
-	@Autowired
-	private PostResponse postResponse;
-
-	@Autowired
-	private TagResponse tagResponse;
-	
-	@Autowired
-	private CategoryResponse categoryResponse;
+	private final BlogViewService blogViewService;
 	
 	@Operation(summary = "get all the post")
-	@GetMapping("/getAllPosts")
+	@GetMapping("/posts")
 	public ResponseEntity<List<BlogPostViewDto>> getAllPosts() {
-		List<BlogPostViewDto> blogPostViewDtos = blogViewService.getAllPosts();
-		return new ResponseEntity<>(blogPostViewDtos, HttpStatus.OK);
+		return ResponseEntity.ok(blogViewService.getAllPosts());
 	}
 
 	@Operation(summary = "get post by Id")
-	@GetMapping("/getPostById/{postId}")
+	@GetMapping("/post/{postId}")
 	public ResponseEntity<BlogPostViewByIdDto> getPostById(@PathVariable Integer postId) {
-		BlogPostViewByIdDto blogPostViewByIdDto = blogViewService.getPostById(postId);
-		if (blogPostViewByIdDto != null) {
-			return new ResponseEntity<>(blogPostViewByIdDto, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+			return ResponseEntity.ok(blogViewService.getPostById(postId));
 	}
 	
 	@Operation(summary= "To get all the tag")
-	@GetMapping("/getAlltags")
-	//@RequestBody
+	@GetMapping("/tags")
 	public ResponseEntity<List<BlogTagDto>> getAllTags() {
-		List<BlogTagDto> blogTagDtos = blogViewService.getAllTags();
-		return new ResponseEntity<>(blogTagDtos, HttpStatus.OK);
+		return ResponseEntity.ok(blogViewService.getAllTags());
 	}
 	
 	@Operation(summary="To get tag by using an Id")
-	@GetMapping("/getTagById/{tagId}")
+	@GetMapping("/tag/{tagId}")
 	public ResponseEntity<BlogTagViewDto> getTagById(@PathVariable Integer tagId) {
-		BlogTagViewDto blogTagViewDto = blogViewService.getTagById(tagId);
-		return new ResponseEntity<>(blogTagViewDto, HttpStatus.OK);
+		return ResponseEntity.ok(blogViewService.getTagById(tagId));
 	}
 	
 	@Operation(summary="get a category by Id")
-	@GetMapping("/getCategoryById/{categoryId}")
+	@GetMapping("/category/{categoryId}")
 	public ResponseEntity<BlogCategoryViewDto> readCategoryById(@PathVariable Integer categoryId) {
-		BlogCategoryViewDto blogCategoryViewDto = blogViewService.getCategoryById(categoryId);
-		return new ResponseEntity<>(blogCategoryViewDto, HttpStatus.OK);
+		return ResponseEntity.ok(blogViewService.getCategoryById(categoryId));
 	}
 
     @Operation(summary="To get all the categories")
-	@GetMapping("/getAllCategories")
+	@GetMapping("/categories")
 	public ResponseEntity<List<BlogCategoryDto>> getAllCategories() {
-		List<BlogCategoryDto> blogCategoryDto = blogViewService.getAllCategories();
-		return new ResponseEntity<>(blogCategoryDto, HttpStatus.OK);
+		return ResponseEntity.ok(blogViewService.getAllCategories());
 	}
     
     @Operation(summary="add a comment by using user id")
     @PostMapping("addCommentToPost/{postId}")
-	public ResponseEntity<BlogPostCommentDto> addCommentToPost(@RequestBody BlogPostCommentDto blogPostCommentDto,
+	public ResponseEntity<BlogPostComment> addCommentToPost(@RequestBody BlogPostCommentDto blogPostCommentDto,
 			@PathVariable Integer postId) {
-		BlogPostComment blogPostComment = blogViewService.addCommentToPost(blogPostCommentDto, postId);
-		BeanUtils.copyProperties(blogPostComment, blogPostCommentDto);
-		return new ResponseEntity<BlogPostCommentDto>(blogPostCommentDto,HttpStatus.OK);
+		return ResponseEntity.ok(blogViewService.addCommentToPost(blogPostCommentDto, postId));
 	}
 }

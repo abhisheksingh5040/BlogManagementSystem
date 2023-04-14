@@ -2,11 +2,8 @@ package com.te.blogmanagement.response;
 
 import org.springframework.stereotype.Component;
 
-import com.te.blogmanagement.dto.BlogCategoryDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,8 +14,10 @@ import lombok.Setter;
 @Setter
 @Builder
 @Component
-public class ExceptionResponse {
+public class Response<T> {
 
-	private String message;
 	private boolean error;
+	private int status;
+	private String message;
+	private T data;
 }

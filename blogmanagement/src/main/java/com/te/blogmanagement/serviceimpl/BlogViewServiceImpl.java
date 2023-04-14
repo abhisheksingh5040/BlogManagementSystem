@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.te.blogmanagement.dto.BlogCategoryDto;
@@ -29,23 +28,16 @@ import com.te.blogmanagement.repository.BlogPostRepository;
 import com.te.blogmanagement.repository.BlogTagRepository;
 import com.te.blogmanagement.service.BlogViewService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Service
-@AllArgsConstructor
 public class BlogViewServiceImpl implements BlogViewService {
 
-	@Autowired
-	private BlogPostRepository blogPostRepository;
-
-	@Autowired
-	private BlogCategoryRepository blogCategoryRepository;
-
-	@Autowired
-	private BlogTagRepository blogTagRepository;
-	
-	@Autowired
-	private BlogPostCommentRepository blogPostCommentRepository;
+	private final BlogPostRepository blogPostRepository;
+	private final BlogCategoryRepository blogCategoryRepository;
+	private final BlogTagRepository blogTagRepository;
+	private final BlogPostCommentRepository blogPostCommentRepository;
 
 	// To get all the posts
 	@Override

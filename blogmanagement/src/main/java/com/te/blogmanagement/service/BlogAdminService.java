@@ -8,21 +8,21 @@ import com.te.blogmanagement.entity.BlogTag;
 
 public interface BlogAdminService {
 
-	//get user by Id
+	// get user by Id
 	BlogUserDto readUserById(Integer blogUserId);
-	
-	//delete user by Id
+
+	// delete user by Id
 	boolean deleteUserById(Integer userId);
-	
-	//Create Category
+
+	// Create Category
 	BlogCategory createCategory(BlogCategoryDto blogCategoryDto);
-	
-	//update Category
+
+	// update Category
 	BlogCategory updateCategoryById(BlogCategoryDto blogCategoryDto, Integer categoryId);
-	
-	//Create Tags
+
+	// Create Tags
 	BlogTag createTags(BlogTagDto blogTagDto);
-	
-	//update tag by Id
+
+	// update tag by Id
 	BlogTag updatetagById(BlogTagDto blogTagDto, Integer tagId);
 }
