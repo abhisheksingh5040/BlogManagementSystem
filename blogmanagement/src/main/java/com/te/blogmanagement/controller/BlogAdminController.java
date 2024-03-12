@@ -41,6 +41,7 @@ public class BlogAdminController {
 	@DeleteMapping("/user/{userId}")
 	public ResponseEntity<Response> deleteUserById(@PathVariable Integer userId) {
 		
+		System.out.println("succesfully added ...new line ");
 		return ResponseEntity.ok(Response.builder()
 						.error(false)
 						.status(200)
