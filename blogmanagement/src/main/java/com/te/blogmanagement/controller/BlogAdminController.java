@@ -40,8 +40,9 @@ public class BlogAdminController {
 	@Operation(summary = "delete user by Id")
 	@DeleteMapping("/user/{userId}")
 	public ResponseEntity<Response> deleteUserById(@PathVariable Integer userId) {
-		
-		System.out.println("succesfully added ...new line ");
+   System.out.print("Hi bro");		
+   System.out.print("Hi bro");		
+   System.out.print("Hi bro");		
 		return ResponseEntity.ok(Response.builder()
 						.error(false)
 						.status(200)
